@@ -16,21 +16,12 @@ LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := messageformat
-LOCAL_SDK_VERSION := 4
-LOCAL_SRC_FILES := $(call all-java-files-under, src/)
+LOCAL_SRC_FILES := $(call all-java-files-under, java/)
+
 include $(BUILD_STATIC_JAVA_LIBRARY)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := messageformat-tests
-LOCAL_SDK_VERSION := 4
-LOCAL_STATIC_JAVA_LIBRARIES := messageformat
-LOCAL_SRC_FILES := $(call all-java-files-under, tests/src/)
+LOCAL_STATIC_JAVA_LIBRARIES := messageformat junit-targetdex
+LOCAL_SRC_FILES := $(call all-java-files-under, javatests/)
 include $(BUILD_STATIC_JAVA_LIBRARY)
-
-# Also build a host side library
-include $(CLEAR_VARS)
-
-LOCAL_MODULE := messageformat_host
-LOCAL_SRC_FILES := $(call all-java-files-under, src/)
-
-include $(BUILD_HOST_JAVA_LIBRARY)

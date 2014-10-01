@@ -16,6 +16,8 @@
 
 package com.android.messageformat;
 
+import android.content.Context;
+
 import java.util.Locale;
 
 public final class MessageFormat {
@@ -30,6 +32,34 @@ public final class MessageFormat {
    */
   public static final String formatNamedArgs(Locale locale, String msg, Object... nameValuePairs) {
     return com.ibm.icu.simple.MessageFormat.formatNamedArgs(locale, msg, nameValuePairs);
+  }
+
+  /**
+   * Formats a message pattern string for the default locale with a variable number of name/value
+   * pair arguments.
+   * Creates an ICU MessageFormat for Locale.getDefault() and pattern,
+   * and formats with the arguments.
+   *
+   * @param msg an ICU-MessageFormat-syntax string
+   * @param nameValuePairs (argument name, argument value) pairs
+   */
+  public static final String formatNamedArgs(String msg, Object... nameValuePairs) {
+    return formatNamedArgs(Locale.getDefault(), msg, nameValuePairs);
+  }
+
+  /**
+   * Formats a message pattern from Android resource for the default locale with a variable number
+   * of name/value pair arguments.
+   * Creates an ICU MessageFormat for Locale.getDefault() and pattern,
+   * and formats with the arguments.
+   *
+   * @param context Android context object
+   * @param id Android string resource ID representing ICU-MessageFormat-syntax string
+   * @param nameValuePairs (argument name, argument value) pairs
+   */
+  public static final String formatNamedArgs(Context context, int id, Object... nameValuePairs) {
+    return formatNamedArgs(Locale.getDefault(),
+        context.getResources().getString(id), nameValuePairs);
   }
 
   // Non instantiable
