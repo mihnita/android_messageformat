@@ -18,11 +18,12 @@ include $(CLEAR_VARS)
 LOCAL_MODULE := messageformat
 LOCAL_SRC_FILES := $(call all-java-files-under, java/)
 LOCAL_JARJAR_RULES := $(LOCAL_PATH)/jarjar-rules.txt
-
+LOCAL_SDK_VERSION := 9
 include $(BUILD_STATIC_JAVA_LIBRARY)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := messageformat-tests
 LOCAL_STATIC_JAVA_LIBRARIES := messageformat junit-targetdex
 LOCAL_SRC_FILES := $(call all-java-files-under, javatests/)
+LOCAL_SDK_VERSION := 9
 include $(BUILD_STATIC_JAVA_LIBRARY)
